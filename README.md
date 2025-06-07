@@ -1,6 +1,8 @@
-# Smart Pass Manager: A Noise-Aware Transpiler Pass for Qiskit
+# 📚 Smart Pass Manager: A Noise-Aware Transpiler Pass for Qiskit
 
 This repository contains the implementation of **Smart Pass Manager**, a noise-aware transpiler extension for [Qiskit](https://qiskit.org/). It selects a connected subset of physical qubits on IBM Quantum devices based on calibration data to minimize noise during circuit execution.
+
+---
 
 ## 🚀 Project Overview
 
@@ -11,8 +13,100 @@ This repository contains the implementation of **Smart Pass Manager**, a noise-a
 - Integrating seamlessly with Qiskit's `transpile` function.
 - Improving circuit fidelity by reducing gate and readout errors based on live calibration data.
 
-The project is inspired by [Murali et al., ASPLOS'19](https://arxiv.org/abs/1901.11054).
+The project is inspired by:  
+**Murali et al.**, *Noise-Adaptive Compiler Mappings for Noisy Intermediate-Scale Quantum Computers*, [ASPLOS'19](https://arxiv.org/abs/1901.11054).
 
 ---
 
 ## 📦 Repository Contents
+
+```
+/smart-pass-manager
+  ├── smart_transpile.py    # Noise-aware transpiler wrapper
+  ├── scoring.py            # Functions for weighted graph and qubit selection
+  ├── benchmark.py          # Benchmark script: generate, mirror, transpile, simulate circuits
+  └── README.md              # This file
+```
+
+---
+
+## 🧩 Installation
+
+1. Install Python 3.8+.
+2. (Optional but recommended) Create a virtual environment:
+
+```bash
+python -m venv venv
+source venv/bin/activate   # On Windows: venv\Scripts\activate
+```
+
+3. Install required packages:
+
+```bash
+pip install qiskit qiskit-aer numpy matplotlib pandas seaborn
+```
+
+---
+
+## 🔨 Usage
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/smart-pass-manager.git
+cd smart-pass-manager
+```
+
+2. Run the benchmark script:
+
+```bash
+python benchmark.py
+```
+
+This script will:
+- Generate random quantum circuits.
+- Mirror the circuits (forward + inverse).
+- Transpile using both standard Qiskit and Smart Pass Manager.
+- Simulate the circuits with realistic noise models from IBM Fake Backends.
+- Collect and save results.
+
+3. Results are stored in a Pandas DataFrame (`results.csv`) for further analysis.
+
+---
+
+## 📊 Visualization
+
+Plotting utilities can be used to:
+- Compare **Success Rates** (proxy for fidelity).
+- Analyze **Relative Infidelity Reduction (RIR)**.
+- Study performance grouped by **backend**, **qubit count**, and **circuit depth**.
+
+Visualizations can be easily included in reports or publications.
+
+---
+
+## 📚 Citation
+
+If you use this project in academic work, please cite:
+
+```bibtex
+@inproceedings{murali2019noise,
+  title={Noise-Adaptive Compiler Mappings for Noisy Intermediate-Scale Quantum Computers},
+  author={Murali, Prakash and Baker, Jonathan M and Abhari, Ali Javadi and Chong, Frederic T and Martonosi, Margaret},
+  booktitle={Proceedings of the Twenty-Fourth International Conference on Architectural Support for Programming Languages and Operating Systems},
+  pages={1015--1029},
+  year={2019}
+}
+```
+
+---
+
+## ⚖️ License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 🙏 Acknowledgements
+
+This project builds upon the open-source contributions of the Qiskit community and is inspired by the work of Murali et al. Substantial assistance in code development and documentation was provided by ChatGPT (OpenAI GPT-4o), and all content was critically reviewed by the author.
