@@ -23,8 +23,10 @@ The project is inspired by:
 ```
 /smart-pass-manager
   ├── smart_transpile.py    # Noise-aware transpiler wrapper
-  ├── scoring.py            # Functions for weighted graph and qubit selection
-  ├── benchmark.py          # Benchmark script: generate, mirror, transpile, simulate circuits
+  ├── scoring.py            # Build weighted graph and select qubit patches
+  ├── passes.py              # Custom Qiskit transpiler passes
+  ├── __init__.py            # Package initialization
+  ├── benchmark.ipynb        # Jupyter Notebook: generate, mirror, transpile, simulate circuits
   └── README.md              # This file
 ```
 
@@ -43,7 +45,7 @@ source venv/bin/activate   # On Windows: venv\Scripts\activate
 3. Install required packages:
 
 ```bash
-pip install qiskit qiskit-aer numpy matplotlib pandas seaborn
+pip install qiskit qiskit-aer numpy matplotlib pandas seaborn jupyterlab
 ```
 
 ---
@@ -57,31 +59,35 @@ git clone https://github.com/yourusername/smart-pass-manager.git
 cd smart-pass-manager
 ```
 
-2. Run the benchmark script:
+2. Open the Jupyter Notebook:
 
 ```bash
-python benchmark.py
+jupyter lab benchmark.ipynb
 ```
 
-This script will:
+or
+
+```bash
+jupyter notebook benchmark.ipynb
+```
+
+3. Run the notebook cells to:
 - Generate random quantum circuits.
 - Mirror the circuits (forward + inverse).
 - Transpile using both standard Qiskit and Smart Pass Manager.
 - Simulate the circuits with realistic noise models from IBM Fake Backends.
-- Collect and save results.
-
-3. Results are stored in a Pandas DataFrame (`results.csv`) for further analysis.
+- Collect and save results into a Pandas DataFrame.
 
 ---
 
 ## 📊 Visualization
 
-Plotting utilities can be used to:
+The notebook provides utilities to:
 - Compare **Success Rates** (proxy for fidelity).
 - Analyze **Relative Infidelity Reduction (RIR)**.
 - Study performance grouped by **backend**, **qubit count**, and **circuit depth**.
 
-Visualizations can be easily included in reports or publications.
+Plots are suitable for inclusion in reports or publications.
 
 ---
 
